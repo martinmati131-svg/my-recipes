@@ -45,8 +45,15 @@ const recipeSchema = {
         },
         description: "Detailed, step-by-step instructions to prepare the dish, including cooking times, temperatures, and specific techniques where applicable.",
       },
+      tipsAndVariations: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.STRING,
+        },
+        description: "A list of helpful tips and variations for the recipe. For example, suggest ingredient substitutions (like using tofu instead of chicken for a vegetarian option), complementary flavors, or simple ways to customize the dish.",
+      },
     },
-    required: ["recipeName", "description", "ingredients", "instructions"],
+    required: ["recipeName", "description", "ingredients", "instructions", "tipsAndVariations"],
   },
 };
 
@@ -55,7 +62,8 @@ export const generateRecipes = async (ingredients: string): Promise<Recipe[]> =>
     You are a creative chef. Based on the following ingredients, generate 3 diverse and delicious recipes. 
     The ingredients I have are: ${ingredients}.
     Feel free to include common pantry staples (like salt, pepper, oil, flour, sugar, spices) if needed, but prioritize the provided ingredients.
-    For each recipe, provide a creative name, a short description, a list of all required ingredients with their specific quantities (as an array of objects, where each object has a "name" and a "quantity" property), and clear, detailed step-by-step instructions. Include specific cooking times and temperatures where appropriate. Each step should be a distinct action.
+    For each recipe, provide a creative name, a short description, a list of all required ingredients with their specific quantities (as an array of objects, where each object has a "name" and a "quantity" property), clear, detailed step-by-step instructions, and a "Tips & Variations" section.
+    The "Tips & Variations" section should have 2-3 bullet points suggesting ingredient substitutions (e.g., tofu for chicken), complementary flavors, or simple variations to customize the dish.
     Ensure the output is a valid JSON array.
   `;
 

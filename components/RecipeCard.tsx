@@ -66,6 +66,17 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSaved, onSave, onUnsa
             ))}
           </ol>
         </div>
+
+        {recipe.tipsAndVariations && recipe.tipsAndVariations.length > 0 && (
+          <div className="mt-6">
+            <h4 className="font-semibold text-gray-700 border-b pb-2 mb-2">Tips & Variations</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 text-sm">
+              {recipe.tipsAndVariations.map((tip, i) => (
+                <li key={i}>{tip}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
